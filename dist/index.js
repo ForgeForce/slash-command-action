@@ -9436,7 +9436,6 @@ class Command {
     constructor(name, prefix) {
         this.name = name;
         this.prefix = prefix;
-        this.matcher = /^([\w]+)\b *(.*)?$/m;
         this.matcher = new RegExp(prefix + '([\w]+)\b *(.*)?$', 'm');
     }
     checkComment(comment = "") {
