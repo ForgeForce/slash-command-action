@@ -7,7 +7,7 @@ export class Command {
   private matcher: RegExp;
 
   constructor(readonly name: string, readonly prefix: string) {
-    this.matcher = new RegExp(prefix + '([\w]+)\b *(.*)?$', 'm')
+    this.matcher = new RegExp('^' + prefix + '([\w]+)\b *(.*)?$', 'm')
   }
 
   public checkComment(comment: string = ""): CommandDetails | undefined {
