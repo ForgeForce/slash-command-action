@@ -4,9 +4,10 @@ export interface CommandDetails {
 }
 
 export class Command {
-  private matcher: RegExp = /^\/([\w]+)\b *(.*)?$/m;
+  private matcher: RegExp = /^([\w]+)\b *(.*)?$/m;
 
-  constructor(readonly name: string) {
+  constructor(readonly name: string, readonly prefix: string) {
+    this.matcher = new RegExp(prefix + '([\w]+)\b *(.*)?$', 'm')
   }
 
   public checkComment(comment: string = ""): CommandDetails | undefined {

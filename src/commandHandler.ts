@@ -24,12 +24,13 @@ export class CommandHandler {
   constructor(
     repoToken: string,
     commandName: string,
+    commandPrefix: string,
     private readonly addReaction: boolean,
     reactionType: string,
     private readonly allowEdits: boolean,
     private readonly requiredPermissionLevel: PermissionLevel,
   ) {
-    this.command = new Command(commandName);
+    this.command = new Command(commandName, commandPrefix);
     this.reaction = new Reaction(reactionType);
     this.client = getOctokit(repoToken);
   }

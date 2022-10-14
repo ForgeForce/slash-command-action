@@ -17,6 +17,10 @@ inputs:
     description: The command to act on
     required: true
 
+  prefix:
+    description: The command prefix
+    required: true
+
   reaction:
     description: Responds to the comment with a reaction
     required: false

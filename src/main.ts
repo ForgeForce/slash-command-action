@@ -12,6 +12,7 @@ export async function run(): Promise<void> {
     await new CommandHandler(
       getInput("repo-token", { required: true }),
       getInput("command", { required: true }),
+      getInput("prefix", { required: true }),
       getBooleanInput("reaction"),
       getInput("reaction-type"),
       getBooleanInput("allow-edits"),
