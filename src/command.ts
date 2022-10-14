@@ -7,16 +7,16 @@ export class Command {
   private matcher: RegExp;
 
   constructor(readonly name: string, readonly prefix: string) {
-    this.matcher = new RegExp('^' + prefix + '([\w]+)\b *(.*)?$', 'm')
+    this.matcher = new RegExp('^(' + prefix + ')([\w]+)\b *(.*)?$', 'm')
   }
 
   public checkComment(comment: string = ""): CommandDetails | undefined {
     const command = comment.match(this.matcher);
 
-    if (command && this.name === command[1]) {
+    if (command && this.name === command[2]) {
       return {
         name: this.name,
-        arguments: command[2],
+        arguments: command[3],
       };
     }
   }
