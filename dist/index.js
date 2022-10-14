@@ -9433,10 +9433,11 @@ function wrappy (fn, cb) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Command = void 0;
 class Command {
-    constructor(nameIn, prefix) {
-        this.nameIn = nameIn;
-        this.prefix = prefix;
-        this.name = nameIn.replace("\\s", " ");
+    constructor(name, prefixIn) {
+        this.name = name;
+        this.prefixIn = prefixIn;
+        this.prefix = prefixIn.replace("\s", " ");
+        console.log("Looking for commands starting with: `" + this.prefix + "`");
     }
     checkComment(comment = "") {
         if (comment.startsWith(this.prefix)) {

@@ -4,10 +4,11 @@ export interface CommandDetails {
 }
 
 export class Command {
-  private name: string;
+  private prefix: string;
 
-  constructor(readonly nameIn: string, private readonly prefix: string) {
-    this.name = nameIn.replace("\\s", " ");
+  constructor(private readonly name: string, readonly prefixIn: string) {
+    this.prefix = prefixIn.replace("\s", " ");
+    console.log("Looking for commands starting with: `" + this.prefix + "`");
   }
 
   public checkComment(comment: string = ""): CommandDetails | undefined {
