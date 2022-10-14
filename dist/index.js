@@ -9433,18 +9433,21 @@ function wrappy (fn, cb) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Command = void 0;
 class Command {
-    constructor(name, prefix) {
-        this.name = name;
+    constructor(nameIn, prefix) {
+        this.nameIn = nameIn;
         this.prefix = prefix;
-        this.matcher = new RegExp('^(' + prefix + ')([\w]+)\b *(.*)?$', 'm');
+        this.name = nameIn.replace("\\s", " ");
     }
     checkComment(comment = "") {
-        const command = comment.match(this.matcher);
-        if (command && this.name === command[2]) {
-            return {
-                name: this.name,
-                arguments: command[3],
-            };
+        if (comment.startsWith(this.prefix)) {
+            const actualComment = comment.substring(this.prefix.length);
+            const split = actualComment.split(" ");
+            if (split[0] === this.name) {
+                return {
+                    name: this.name,
+                    arguments: split.length == 1 ? "" : split.slice(1).join(" "),
+                };
+            }
         }
     }
 }

@@ -4,20 +4,22 @@ export interface CommandDetails {
 }
 
 export class Command {
-  private matcher: RegExp;
+  private name: string;
 
-  constructor(readonly name: string, readonly prefix: string) {
-    this.matcher = new RegExp('^(' + prefix + ')([\w]+)\b *(.*)?$', 'm')
+  constructor(readonly nameIn: string, private readonly prefix: string) {
+    this.name = nameIn.replace("\\s", " ");
   }
 
   public checkComment(comment: string = ""): CommandDetails | undefined {
-    const command = comment.match(this.matcher);
-
-    if (command && this.name === command[2]) {
-      return {
-        name: this.name,
-        arguments: command[3],
-      };
+    if (comment.startsWith(this.prefix)) {
+      const actualComment = comment.substring(this.prefix.length)
+      const split = actualComment.split(" ")
+      if (split[0] === this.name) {
+        return {
+          name: this.name,
+          arguments: split.length == 1 ? "" : split.slice(1).join(" "),
+        }
+      }
     }
   }
 }
