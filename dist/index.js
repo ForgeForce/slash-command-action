@@ -9436,7 +9436,7 @@ class Command {
     constructor(name, prefixIn) {
         this.name = name;
         this.prefixIn = prefixIn;
-        this.prefix = prefixIn.replace("\s", " ");
+        this.prefix = prefixIn.replace("<ws>", " ");
         console.log("Looking for commands starting with: `" + this.prefix + "`");
     }
     checkComment(comment = "") {

@@ -7,7 +7,7 @@ export class Command {
   private prefix: string;
 
   constructor(private readonly name: string, readonly prefixIn: string) {
-    this.prefix = prefixIn.replace("\s", " ");
+    this.prefix = prefixIn.replace("<ws>", " ");
     console.log("Looking for commands starting with: `" + this.prefix + "`");
   }
 
